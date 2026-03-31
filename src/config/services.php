@@ -32,6 +32,8 @@ return [
     ],
 
     'insee' => [
+        // Nouvelle plateforme INSEE : clé API générée dans la souscription (valide sans expiration, révocable).
+        // À renseigner depuis le portail: "Souscriptions" → API Sirene → "Clés d'API".
         'token' => env('INSEE_SIRENE_TOKEN'),
     ],
 

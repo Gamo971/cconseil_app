@@ -15,13 +15,6 @@ class CompanyEnrichController extends Controller
             'siret' => 'required|string|min:14|max:20',
         ]);
 
-        if (! config('services.insee.token')) {
-            return response()->json([
-                'error' => 'missing_insee_token',
-                'message' => "Le token INSEE (API Sirene) n'est pas configuré.",
-            ], 501);
-        }
-
         $siret = substr(preg_replace('/\D+/', '', $validated['siret']), 0, 14);
 
         $data = Cache::remember("sirene:siret:{$siret}", now()->addHours(24), function () use ($sirene, $siret) {

@@ -11,9 +11,14 @@ class SireneClient
 
     private function http(): PendingRequest
     {
+        $token = trim((string) config('services.insee.token'));
+        if ($token === '') {
+            abort(501, "Clé API INSEE manquante : configurez INSEE_SIRENE_TOKEN (clé d'API de la souscription Sirene).");
+        }
+
         return Http::baseUrl(self::BASE_URL)
             ->acceptJson()
-            ->withToken((string) config('services.insee.token'))
+            ->withToken($token)
             ->timeout(10)
             ->retry(2, 500, function ($exception) {
                 $response = $exception->response;

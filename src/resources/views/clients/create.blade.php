@@ -337,8 +337,8 @@
                 } catch (e) {
                     const status = e?.response?.status;
                     const code = e?.response?.data?.error;
-                    if (status === 501 && code === 'missing_insee_token') {
-                        this.enrichWarning = "Enrichissement Sirene indisponible : ajoutez INSEE_SIRENE_TOKEN dans .env pour remplir forme juridique et année de création automatiquement.";
+                    if (status === 501) {
+                        this.enrichWarning = "Enrichissement Sirene indisponible : ajoutez INSEE_SIRENE_TOKEN (clé d'API de la souscription Sirene INSEE) dans .env.";
                     } else {
                         this.enrichWarning = "Enrichissement Sirene indisponible pour le moment (token/quota/réseau).";
                     }
