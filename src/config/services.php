@@ -31,4 +31,8 @@ return [
         ],
     ],
 
+    'insee' => [
+        'token' => env('INSEE_SIRENE_TOKEN'),
+    ],
+
 ];

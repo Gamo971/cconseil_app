@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyEnrichController;
+use App\Http\Controllers\CompanySearchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FinancialDataController;
 use App\Http\Controllers\MissionController;
@@ -13,6 +15,12 @@ Route::get('/', fn () => redirect()->route('dashboard'));
 // ─── Routes authentifiées (métier) ────────────────────────────────────────────
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/api/company/search', CompanySearchController::class)
+        ->name('api.company.search');
+
+    Route::get('/api/company/enrich', CompanyEnrichController::class)
+        ->name('api.company.enrich');
 
     Route::resource('clients', ClientController::class);
 
